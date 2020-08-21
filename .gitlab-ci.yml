@@ -1,0 +1,71 @@
+image: debian:latest
+
+before_script:
+  - export DEBIAN_FRONTEND= noninteractive
+  - apt-get update -y
+  - apt-get install -y zip unzip nodejs jsonlint
+
+stages:
+  - test
+  - build
+  - deploy
+
+test rules:
+  stage: test
+  script:
+    - jsonlint-php data/data.min.json
+  only:
+    changes:
+      - data/data.min.json
+
+hash rules:
+  stage: build
+  script:
+    - sha256sum data/data.min.json | awk '{print $1}' > rules.min.hash
+    - node build_tools/minifyDataJSON.js "data/data.min.json" "data.minify.json"
+    - sha256sum data.minify.json | awk '{print $1}' > rules.minify.hash
+  artifacts:
+    paths:
+      - rules.min.hash
+      - data.minify.json
+      - rules.minify.hash
+  only:
+    refs:
+      - merge_requests
+      - master
+    changes:
+      - data/data.min.json
+
+bundle addon:
+  stage: build
+  script:
+    - zip ClearUrls -r -FS clearurls.js browser-polyfill.js manifest.json img/* external_js/* html/* core_js/* css/* fonts/* _locales/*
+  only:
+    - master
+  artifacts:
+    paths:
+      - ClearUrls.zip
+
+pages:
+  stage: deploy
+  script:
+    - mkdir public
+    - mkdir public/data
+    - mv GitLabPages/* public/
+    - cp img/clearurls.svg public/clearurls.svg
+    - cp data/data.min.json public/data/data.min.json
+    - sha256sum public/data/data.min.json | awk '{print $1}' > public/data/rules.min.hash
+    - node build_tools/minifyDataJSON.js "public/data/data.min.json" "public/data/data.minify.json"
+    - sha256sum public/data/data.minify.json | awk '{print $1}' > public/data/rules.minify.hash
+  artifacts:
+    paths:
+      - public
+  only:
+    refs:
+      - merge_requests
+      - master
+    changes:
+      - GitLabPages/*
+      - img/clearurls.svg
+      - data/data.min.json
+      - build_tools/minifyDataJSON.js
