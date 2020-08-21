@@ -12,3 +12,9 @@ This repo manages the rules for the ClearURLs addon. By using the GitLab CI/CD, 
 
 ## Contribute
 If you have any suggestions or complaints, please [create an issue](https://gitlab.com/anti-tracking/ClearURLs/rules/-/issues/new) or email us rules.support (at) clearurls.xyz (this mail will automatically create a new issue in this repo).
+
+## Download Rules
+The rules and the corresponding hash file are available on GitLab Pages under the following URLs:
+
+- data.minify.json: https://rules1.clearurls.xyz/data/data.minify.json
+- rules.minify.hash: https://rules1.clearurls.xyz/data/rules.minify.hash
