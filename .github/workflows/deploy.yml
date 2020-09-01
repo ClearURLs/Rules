@@ -1,0 +1,43 @@
+name: Build, Test and Deploy Rules
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@master
+      - name: Install Dependencies
+        run: sudo apt-get install -y nodejs jsonlint
+      - name: Build
+        run: |
+          sha256sum data/data.min.json | awk '{print $1}' > data/rules.min.hash
+          node build_tools/minifyDataJSON.js "data/data.min.json" "data/data.minify.json"
+          sha256sum data.minify.json | awk '{print $1}' > data/rules.minify.hash
+      - name: Upload Rules Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: rules-artifact
+          path: data
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@master
+      - name: Install Dependencies
+        run: sudo apt-get install -y nodejs jsonlint
+      - name: Download Rules Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: rules-artifact
+          path: data
+      - name: Test
+        run: |
+          jsonlint-php data/data.min.json
+          jsonlint-php data/data.minify.json
