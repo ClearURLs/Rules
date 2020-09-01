@@ -41,3 +41,20 @@ jobs:
         run: |
           jsonlint-php data/data.min.json
           jsonlint-php data/data.minify.json
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@master
+      - name: Download Rules Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: rules-artifact
+          path: data
+      - name: Deploy to Github Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./data
+          publish_branch: master
