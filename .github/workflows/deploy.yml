@@ -17,7 +17,7 @@ jobs:
         run: |
           sha256sum data/data.min.json | awk '{print $1}' > data/rules.min.hash
           node build_tools/minifyDataJSON.js "data/data.min.json" "data/data.minify.json"
-          sha256sum data.minify.json | awk '{print $1}' > data/rules.minify.hash
+          sha256sum data/data.minify.json | awk '{print $1}' > data/rules.minify.hash
       - name: Upload Rules Artifacts
         uses: actions/upload-artifact@v2
         with:
