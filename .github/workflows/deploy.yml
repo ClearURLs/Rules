@@ -15,14 +15,16 @@ jobs:
         run: sudo apt-get install -y nodejs jsonlint
       - name: Build
         run: |
-          sha256sum data/data.min.json | awk '{print $1}' > data/rules.min.hash
-          node build_tools/minifyDataJSON.js "data/data.min.json" "data/data.minify.json"
-          sha256sum data/data.minify.json | awk '{print $1}' > data/rules.minify.hash
+          mkdir public
+          cp data.min.json public/data.min.json
+          sha256sum data.min.json | awk '{print $1}' > public/rules.min.hash
+          node build_tools/minifyDataJSON.js "public/data.min.json" "public/data.minify.json"
+          sha256sum data.minify.json | awk '{print $1}' > public/rules.minify.hash
       - name: Upload Rules Artifacts
         uses: actions/upload-artifact@v2
         with:
           name: rules-artifact
-          path: data
+          path: public
   test:
     name: Test
     runs-on: ubuntu-latest
@@ -36,11 +38,11 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: rules-artifact
-          path: data
+          path: public
       - name: Test
         run: |
-          jsonlint-php data/data.min.json
-          jsonlint-php data/data.minify.json
+          jsonlint-php data.min.json
+          jsonlint-php data.minify.json
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
@@ -52,10 +54,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: rules-artifact
-          path: data
+          path: public
       - name: Deploy to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./data
+          publish_dir: ./public
           publish_branch: gh-pages

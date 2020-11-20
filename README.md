@@ -17,8 +17,8 @@ If you have any suggestions or complaints, please [create an issue](https://gitl
 The rules and the corresponding hash file are available on GitLab and GitHub Pages under the following URLs:
 
 ### GitLab
-- data.minify.json: https://rules1.clearurls.xyz/data/data.minify.json
-- rules.minify.hash: https://rules1.clearurls.xyz/data/rules.minify.hash
+- data.minify.json: https://rules1.clearurls.xyz/data.minify.json
+- rules.minify.hash: https://rules1.clearurls.xyz/rules.minify.hash
 
 ### GitHub
 - data.minify.json: https://rules2.clearurls.xyz/data.minify.json
