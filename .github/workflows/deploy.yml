@@ -41,8 +41,8 @@ jobs:
           path: public
       - name: Test
         run: |
-          jsonlint-php data.min.json
-          jsonlint-php data.minify.json
+          jsonlint-php public/data.min.json
+          jsonlint-php public/data.minify.json
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
