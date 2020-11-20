@@ -13,7 +13,7 @@ stages:
 test rules:
   stage: test
   script:
-    - jsonlint-php data/data.min.json
+    - jsonlint-php data.min.json
   only:
     changes:
       - data.min.json
