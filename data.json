@@ -139,6 +139,7 @@
             ],
             "exceptions": [
                 ".*([\\.]?matrix\\.org)(\\/_matrix)\\/.*",
+                ".*(npshopping\\.com)(\\/api\\/dictionary\\/warehouse)\\?ref=[0-9]*",
                 ".*([\\.]?prismic\\.io).*",
                 ".*([\\.]?gitlab\\.com).*",
                 ".*([\\.]?gcsip\\.com).*[\\?|&]ref[\\_]?=[^\\/|\\?|&]*.*",
