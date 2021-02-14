@@ -456,6 +456,14 @@
             ],
             "exceptions": [],
             "redirections": []
+
+        },
+        "proofpoint.com": {
+            "urlPattern": "^https?:\\/\\/urldefense(?:\\.proofpoint)?.com\\/v3\\/__http\\$$",
+            "completeProvider": true,
+            "redirections": [
+                "^https?:\\/\\/urldefense(?:\\.proofpoint)?.com\\/v3\\/__(https?:\\/\\/.+)__;.*"
+            ]
         }
     }
 }
