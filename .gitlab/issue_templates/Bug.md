@@ -16,7 +16,7 @@ You do not have to reinstall Firefox or disable all addons. You can just create 
 -->
 * [ ] Can you reproduce the problem in a **fresh** firefox profile with **only** ClearURLs?
 * [ ] Are you running the latest version of ClearURLs?
-* [ ] Are you have changed settings under `about:config`?
+* [ ] Have you changed settings under `about:config`?
 
 ### Description
 
