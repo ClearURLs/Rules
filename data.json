@@ -459,6 +459,18 @@
             ],
             "exceptions": [],
             "redirections": []
+        },
+        "fiverr.com": {
+            "urlPattern": "https?://([a-zA-Z0-9-]*\\.)?(fiverr\\.com)(.*\\?.*)",
+            "completeProvider": false,
+            "rules": [
+                "context_referrer",
+                "source",
+                "ref_ctx_id",
+                "funnel",
+            ],
+            "exceptions": [],
+            "redirections": []
         }
     }
 }
