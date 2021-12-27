@@ -72,6 +72,10 @@ function build() {
         if(data.providers[provider].redirections.length !== 0) {
             self.redirections = data.providers[provider].redirections;
         }
+
+        if(data.providers[provider].methods && data.providers[provider].methods.length !== 0) {
+            self.methods = data.providers[provider].methods;
+        }
     }
 
     fs.writeFile(outFileLocation, JSON.stringify(minifiedData), function(err) {
