@@ -467,7 +467,7 @@
                 "context_referrer",
                 "source",
                 "ref_ctx_id",
-                "funnel",
+                "funnel"
             ],
             "exceptions": [],
             "redirections": []
