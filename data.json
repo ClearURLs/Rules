@@ -230,8 +230,7 @@
                 "out\\.reddit\\.\\w{2,}\\/.*url=([^&]*)",
                 "click\\.redditmail\\.\\w{2,}\\/.*url=([^&]*)"
             ]
-        }
-        ,
+        },
         "netflix": {
             "urlPattern": "(https:\\/\\/|http:\\/\\/)([a-zA-Z0-9-]*\\.)?(netflix)(\\.[a-zA-Z]{2,})(.*\\?.*)",
             "completeProvider": false,
