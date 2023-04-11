@@ -15,6 +15,9 @@ test rules:
   script:
     - jsonlint-php data.min.json
   only:
+    refs:
+      - merge_requests
+      - master
     changes:
       - data.min.json
 
