@@ -2813,6 +2813,18 @@
                 "^https?:\\/\\/.*?partner-ads\\.com\\/.*?htmlurl=([^&]+)"
             ],
             "forceRedirection": false
+        },
+        "kahoot.it": {
+            "urlPattern": "^https?://(?:[a-z0-9-]+\\.)*?kahoot\\.it",
+            "completeProvider": false,
+            "rules": [
+                "refer_method"
+            ],
+            "referralMarketing": [],
+            "rawRules": [],
+            "exceptions": [],
+            "redirections": [],
+            "forceRedirection": false
         }
     }
 }
