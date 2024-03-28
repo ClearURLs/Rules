@@ -455,6 +455,8 @@
                 "rdc",
                 "rdr",
                 "paipv",
+                "_nc_x",
+                "_rdr",
                 "mibextid"
             ],
             "referralMarketing": [],
