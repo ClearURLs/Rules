@@ -1808,6 +1808,18 @@
             "redirections": [],
             "forceRedirection": false
         },
+        "space.bilibili.com": {
+            "urlPattern": "^https?:\\/\\/space\\.bilibili\\.com",
+            "completeProvider": false,
+            "rules": [
+                "spm_id_from"
+            ],
+            "referralMarketing": [],
+            "rawRules": [],
+            "exceptions": [],
+            "redirections": [],
+            "forceRedirection": false
+        },
         "m.bilibili.com": {
             "urlPattern": "^https?:\\/\\/m\\.bilibili\\.com",
             "completeProvider": false,
