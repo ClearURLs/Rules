@@ -22,7 +22,7 @@ jobs:
           node build_tools/minifyDataJSON.js "public/data.min.json" "public/data.minify.json"
           sha256sum public/data.minify.json | awk '{print $1}' > public/rules.minify.hash
       - name: Upload Rules Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: rules-artifact
           path: public
@@ -36,7 +36,7 @@ jobs:
       - name: Install Dependencies
         run: sudo apt-get install -y nodejs jsonlint
       - name: Download Rules Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: rules-artifact
           path: public
@@ -52,12 +52,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@master
       - name: Download Rules Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: rules-artifact
           path: public
       - name: Deploy to Github Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
